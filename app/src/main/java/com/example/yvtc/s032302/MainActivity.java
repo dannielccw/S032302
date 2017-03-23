@@ -14,7 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     int s = -1;
     int tmp;
-    boolean chks[] = new boolean[4];
+    boolean chks[] = new boolean[4]; //dan.w: for setMultiChoiceItems
+    boolean tmpchk[] = new boolean[4]; //dan.w: for setMultiChoiceItems
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +139,8 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle("多選測試");
         final String fruits[] = getResources().getStringArray(R.array.fruits);
 
-        builder.setMultiChoiceItems(R.array.fruits, chks, new DialogInterface.OnMultiChoiceClickListener() {
+        tmpchk = chks.clone(); //dan.w: 複製chks陣列
+        builder.setMultiChoiceItems(R.array.fruits, tmpchk, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
 
@@ -151,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("DLG", "使用者按下確定");
                 StringBuilder sb = new StringBuilder();
                 int i;
+                chks = tmpchk.clone(); //dan.w: 複製tmpchk陣列到chks陣列
                 for (i=0; i<fruits.length; i++)
                 {
                     if (chks[i])
