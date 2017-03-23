@@ -1,5 +1,6 @@
 package com.example.yvtc.s032302;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -207,5 +209,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public  void click7(View v)
+    {
+        final ProgressDialog pd = new ProgressDialog(MainActivity.this);
+        pd.setCancelable(false);
+        pd.setTitle("進度框");
+        pd.setMessage("讀取中請稍後");
+        pd.show();
+
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+
+                try {
+                    Thread.sleep(3000); //3 sec
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                pd.dismiss();
+            }
+        }.start();
+
+
+    }
 
 }
