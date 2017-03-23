@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import static com.example.yvtc.s032302.R.styleable.View;
 
@@ -43,4 +45,40 @@ public class MainActivity extends AppCompatActivity {
 
                builder.show();
             }
+
+            public void click2(View v)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("輸入測試");
+                builder.setMessage("請輸入訊息:");
+                builder.setIcon(android.R.drawable.ic_dialog_info);
+                final TextView tv= (TextView) findViewById(R.id.textView);
+                final EditText ed = new EditText(MainActivity.this);
+                builder.setView(ed);
+
+                builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("DLG", "使用者按下確定");
+                        tv.setText(ed.getText().toString());
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("DLG", "使用者按下取消");
+                    }
+                });
+
+                builder.show();
+
+            }
+
+
+
+
+
+
+
+
     }
